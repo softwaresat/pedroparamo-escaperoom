@@ -101,7 +101,7 @@ app.get('/leaderboard', function (req, res) {
               console.log( stationNumber-1)
               if(allTeams[i].lastStation == stationNumber-1){
                 allTeams[i].points = parseInt(allTeams[i].points) + parseInt(newPoints);
-                allTeams[i].stationNumber++;
+                allTeams[i].lastStation++;
               }
             }
           }
