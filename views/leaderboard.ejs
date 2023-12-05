@@ -12,7 +12,6 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
     <a class="navbar-brand" href="#">Whispers of Comala</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -36,14 +35,13 @@
         </li>
       </ul>
     </div>
-  </div>
 </nav>
 
 <div class="container mt-4">
-  <ul class="list-group">
-    <script>
+  <ul class="list-group" id="">
+    <!-- <script>
      let allTeams = JSON.parse('<%- JSON.stringify(allTeams) %>');
-    </script>
+    </script> -->
     <% allTeams.forEach(function (team, index) { %>
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <%= team.name %>
