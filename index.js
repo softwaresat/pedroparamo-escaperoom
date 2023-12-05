@@ -103,7 +103,7 @@ app.get('/leaderboard', function (req, res) {
           }
           io.emit("updateLeaderboard", allTeams[counter]);
   
-          if(!containsTeam){
+          if(!containsTeam && stationNumber == 1){
             newTeam = new Team(teamName, newPoints, 1);
             allTeams.push(newTeam);
             io.emit("updateLeaderboard", newTeam);
