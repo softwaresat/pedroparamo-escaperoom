@@ -86,27 +86,32 @@ app.get('/leaderboard', function (req, res) {
   app.post('/submit', function (req, res) {
         let teamName = req.body.team_name;
         let newPoints = req.body.point_count;
-        let stationNumber = req.body.station_number;    
+        let stationNumber = req.body.station_number;   
+        let response = req.body.response;    
+ 
         let containsTeam = false;
         let counter = 0;
-        for(let i = 0; i < allTeams.length; i++){
-          if(allTeams[i].name == teamName){
-            containsTeam = true;
-            counter = i;
-            if(allTeams[i].lastStation == stationNumber-1){
-              allTeams[i].points = parseInt(allTeams[i].points) + parseInt(newPoints);
+        if((stationNumber == 1 && response.toLowerCase() === "") || (stationNumber == 2 && response.toLowerCase() === "ghost") || (stationNumber == 3 && response.toLowerCase() === "") || (stationNumber == 4 && response.toLowerCase() === " pedro paramo eduviges father renteria dorotea")){
+          for(let i = 0; i < allTeams.length; i++){
+            if(allTeams[i].name == teamName){
+              containsTeam = true;
+              counter = i;
+              if(allTeams[i].lastStation == stationNumber-1){
+                allTeams[i].points = parseInt(allTeams[i].points) + parseInt(newPoints);
+              }
             }
           }
+          io.emit("updateLeaderboard", allTeams[counter]);
+  
+          if(!containsTeam){
+            newTeam = new Team(teamName, newPoints, 1);
+            allTeams.push(newTeam);
+            io.emit("updateLeaderboard", newTeam);
+  
+          }
+          res.redirect("/station"+stationNumber)
+  
         }
-        io.emit("updateLeaderboard", allTeams[counter]);
-
-        if(!containsTeam){
-          newTeam = new Team(teamName, newPoints, 1);
-          allTeams.push(newTeam);
-          io.emit("updateLeaderboard", newTeam);
-
-        }
-        res.redirect("/station"+stationNumber)
-
+        
   })
 http.listen(3000, () => console.log('Server is live on port 3000!'))
