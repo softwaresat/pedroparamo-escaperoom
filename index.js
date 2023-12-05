@@ -109,9 +109,10 @@ app.get('/leaderboard', function (req, res) {
             io.emit("updateLeaderboard", newTeam);
   
           }
-          res.redirect("/station"+stationNumber)
   
         }
+        res.redirect("/station"+stationNumber)
+
         
   })
 http.listen(3000, () => console.log('Server is live on port 3000!'))
