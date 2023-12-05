@@ -23,6 +23,7 @@ let allTeams = [];
 
 
 app.use(express.static('views'))
+
 app.use(express.json({
   limit: '50mb'
 }));
@@ -59,7 +60,7 @@ app.get('/', function (req, res) {
 })
 app.get('/leaderboard', function (req, res) {
 
-    res.render('leaderboard', {allTeams: allTeams.sort((a, b) => a.points - b.points)});
+    res.render('leaderboard', {allTeams: allTeams.sort((a, b) => b.points - a.points)});
     
   
   })
