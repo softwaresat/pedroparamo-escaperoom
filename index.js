@@ -92,12 +92,13 @@ app.get('/leaderboard', function (req, res) {
  
         let containsTeam = false;
         let counter = 0;
-        console.log(stationNumber == 3 && response.toLowerCase() === "dorotea");
-        if((stationNumber == 1 && response.toLowerCase() === "") || (stationNumber == 2 && response.toLowerCase() === "ghost") || (stationNumber == 3 && response.toLowerCase() === "dorotea") || (stationNumber == 4 && response.toLowerCase() === "pedro paramo eduviges father renteria dorotea")){
+        if((stationNumber == 1 && response.toLowerCase() === "john cage") || (stationNumber == 2 && response.toLowerCase() === "ghost") || (stationNumber == 3 && response.toLowerCase() === "dorotea") || (stationNumber == 4 && response.toLowerCase() === "pedro paramo eduviges father renteria dorotea")){
           for(let i = 0; i < allTeams.length; i++){
             if(allTeams[i].name == teamName){
               containsTeam = true;
               counter = i;
+              console.log(allTeams[i].lastStation)
+              console.log( stationNumber-1)
               if(allTeams[i].lastStation == stationNumber-1){
                 allTeams[i].points = parseInt(allTeams[i].points) + parseInt(newPoints);
                 allTeams[i].stationNumber++;
