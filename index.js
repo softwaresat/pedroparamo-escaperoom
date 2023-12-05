@@ -99,6 +99,7 @@ app.get('/leaderboard', function (req, res) {
               counter = i;
               if(allTeams[i].lastStation == stationNumber-1){
                 allTeams[i].points = parseInt(allTeams[i].points) + parseInt(newPoints);
+                allTeams[i].stationNumber++;
               }
             }
           }
