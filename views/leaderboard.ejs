@@ -56,6 +56,7 @@
 <script>
   var socket = io();
   socket.on('updateLeaderboard', function(team){
+    let allTeams = [];
     allTeams.push(team);
     allTeams.sort((a, b) => b.points - a.points);
     document.querySelector('.list-group').innerHTML = "";
